@@ -153,11 +153,9 @@ function renderTodos() {
         $todoList.append($todoItem);
     });
     $todoControlBtns.forEach(function ($todoControlBtn) {
-        if ($todoControlBtn.dataset.type === todoState.status) {
-            $todoControlBtn.classList.add("selected");
-        } else {
-            $todoControlBtn.classList.remove("selected");
-        }
+        const todoControlBtnDatasetType = $todoControlBtn.dataset.type;
+        const isSelectedStatus = todoControlBtnDatasetType === todoState.status;
+        $todoControlBtn.classList.toggle("selected", isSelectedStatus);
     });
     $todoCounter.textContent = todos.length;
     $todoAllSelectedBtn.classList.toggle("all-selected", isAllSelected);
