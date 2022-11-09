@@ -12,6 +12,9 @@ const [todoState, setTodos] = storageInit("todos", {
     status: "all",
 });
 const todoUtils = {
+    all() {
+        return todoState.todos;
+    },
     active() {
         return todoState.todos.filter(({ selected }) => !selected);
     },
@@ -138,19 +141,13 @@ function createTodoItem(todoItem) {
 }
 
 function renderTodos() {
-    let todos = todoState.todos;
-    const existTodos = todos.length;
+    const existTodos = todoState.todos.length;
+    const statusTodos = todoUtils[todoState.status]();
     const existComplete = todoUtils.existComplete();
-    const isAllSelected = !todoUtils.existActive() && todoState.todos.length;
-
-    if (todoState.status === "active") {
-        todos = todoUtils.active();
-    } else if (todoState.status === "complete") {
-        todos = todoUtils.complete();
-    }
+    const isAllSelected = !todoUtils.existActive() && existTodos;
 
     $todoList.innerHTML = "";
-    todos.forEach(function (todoItem) {
+    statusTodos.forEach(function (todoItem) {
         const $todoItem = createTodoItem(todoItem);
         $todoList.append($todoItem);
     });
@@ -163,7 +160,7 @@ function renderTodos() {
     $todoAllSelectedBtn.classList.toggle("content-hide", !existTodos);
     $todoControl.classList.toggle("none", !existTodos);
 
-    $todoCounter.textContent = todos.length;
+    $todoCounter.textContent = statusTodos.length;
     $todoAllSelectedBtn.classList.toggle("all-selected", isAllSelected);
     $todoClearCompleteBtn.classList.toggle("none", !existComplete);
     setTodos();
