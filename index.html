@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <div id="wrap">
+        <h1>todos</h1>
+        <div id="input">
+            <div id="all_sel"></div>
+            <input type="text" placeholder="What needs to be done?" id="main" size="45">
+        </div>
+        <ul id="list">
+            <li id="controll">
+                <span id="item"></span>
+                <div id="flex">
+                    <span id="all" class="sp_ac">All</span>
+                    <span id="act">Active</span>
+                    <span id="com">Completed</span>
+                </div>
+                <span id="cle">Clear completed</span>
+            </li>
+        </ul>
+    </div>
+    <p class="set_text">Double-click to edit a todo</p>
+</body>
+<script src="js/jquery-1.12.3.js"></script>
+<script src="js/common.js"></script>
+</html>

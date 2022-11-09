@@ -1,0 +1,31 @@
+*{margin:0;padding:0;list-style:none;}
+body{background:rgb(229, 255, 227);}
+#wrap{margin:0 auto;width:700px;}
+h1{font-size:70px;color:rgb(146, 224, 146);text-align:center;}
+#input{background:#fff;box-shadow:0 2px 4px #666;width:700px;height:60px;}
+#all_sel{width:60px;height:40px;float:left;font-size:22px;color:#ccc;transform:rotate(90deg);transform-origin:left top;margin-left:40px;text-align:center;cursor:default;}
+ #all_sel::before{content:'❯';font-size:22px;color:#ccc;} 
+#main{background:none;border:none;font-size:25px;line-height:40px;margin-left:-40px;margin-top:10px;margin-bottom:10px;}
+#main:focus{outline:none;} 
+#main::placeholder{color:#ccc;}
+#list{box-shadow:0 0 4px #666;margin-bottom:200px;}
+.list{background:#fff;width:700px;height:auto;position:relative;border-bottom:1px solid #ddd;}
+.check{float:left;width:30px;height:30px;border-radius:50%;background:none;margin:auto 11px;border:2px solid #eee;position:absolute;top:0;bottom:0;color:green;line-height:30px;text-align:center;font-size:20px;user-select:none;}
+.text{line-height:40px;padding-top:10px;font-size:25px;width:600px;padding:10px;margin-left:60px;word-break:break-all;}
+#controll{background:#fff;width:700px;height:30px;display:none;color:#aaa;justify-content:space-around;cursor:default;}
+#flex{display:flex;width:200px;justify-content:space-around;align-items:center;margin-right:100px;height:30px;}
+#flex span{border:1px solid rgba(0,0,0,0);border-radius:3px;line-height:21px;padding:0 3px;cursor:pointer;}
+.sp_ac{border:1px solid gray!important;}
+#item,#cle{margin:0 20px;line-height:30px;width:120px;}
+#cle:hover{text-decoration:underline;cursor:pointer;}
+.act .li_ac{display:none;}
+.com .list{display:none;}
+.com .li_ac{display:block!important;}
+.all_ac{color:#444!important;}
+.li_ac{color:#aaa;text-decoration:line-through;}
+.li_inp{background:none;font-size:25px;line-height:40px;margin-top:10px;margin-bottom:10px;margin-left:60px;}
+.li_inp:focus{outline:none;}
+.close{position:absolute;font-weight:bold;color:red;right:15px;bottom:16px;display:none;cursor:pointer;font-size:20px;}
+.hov .close{display:block;}
+.list_input .close{display:none!important;}
+.set_text{text-align:center;color:rgb(65, 192, 65);margin-bottom:200px;} 
