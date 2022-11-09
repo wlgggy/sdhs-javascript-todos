@@ -40,39 +40,41 @@ const todoUtils = {
     },
 };
 
-$todoAllSelectedBtn.addEventListener("click", function () {
-    const existActive = todoUtils.existActive();
-    if (existActive) {
-        todoState.todos = todoUtils.allComplete();
-    } else {
-        todoState.todos = todoUtils.allActive();
-    }
-    renderTodos();
-});
-$todoInput.addEventListener("keydown", function (event) {
-    const isAddTodoItem = [13, 9].includes(event.keyCode);
-    if (isAddTodoItem) {
-        const todoItem = {
-            index: todoState.count++,
-            title: this.value,
-            selected: false,
-        };
-        todoState.todos.push(todoItem);
-        this.value = "";
-        renderTodos();
-    }
-});
-
-$todoControlBtns.forEach(function ($controlBtn) {
-    $controlBtn.addEventListener("click", function () {
-        todoState.status = this.dataset.type;
+function setEvent() {
+    $todoAllSelectedBtn.addEventListener("click", function () {
+        const existActive = todoUtils.existActive();
+        if (existActive) {
+            todoState.todos = todoUtils.allComplete();
+        } else {
+            todoState.todos = todoUtils.allActive();
+        }
         renderTodos();
     });
-});
-$todoClearCompleteBtn.addEventListener("click", function () {
-    todoState.todos = todoUtils.active();
-    renderTodos();
-});
+    $todoInput.addEventListener("keydown", function (event) {
+        const isAddTodoItem = [13, 9].includes(event.keyCode);
+        if (isAddTodoItem) {
+            const todoItem = {
+                index: todoState.count++,
+                title: this.value,
+                selected: false,
+            };
+            todoState.todos.push(todoItem);
+            this.value = "";
+            renderTodos();
+        }
+    });
+
+    $todoControlBtns.forEach(function ($controlBtn) {
+        $controlBtn.addEventListener("click", function () {
+            todoState.status = this.dataset.type;
+            renderTodos();
+        });
+    });
+    $todoClearCompleteBtn.addEventListener("click", function () {
+        todoState.todos = todoUtils.active();
+        renderTodos();
+    });
+}
 
 function createTodoItem(todoItem) {
     const $todoItem = createElement("div");
@@ -154,4 +156,9 @@ function renderTodos() {
     setTodos();
 }
 
-renderTodos();
+function todoInit() {
+    setEvent();
+    renderTodos();
+}
+
+todoInit();
