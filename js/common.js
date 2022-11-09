@@ -53,9 +53,11 @@ function setEvent() {
     $todoInput.addEventListener("keydown", function (event) {
         const isAddTodoItem = [13, 9].includes(event.keyCode);
         if (isAddTodoItem) {
+            const value = this.value.trim();
+            if (!value.length) return;
             const todoItem = {
                 index: todoState.count++,
-                title: this.value,
+                title: value,
                 selected: false,
             };
             todoState.todos.push(todoItem);
@@ -89,14 +91,14 @@ function createTodoItem(todoItem) {
     const $todoItemToggle = find(".todo-item__toggle", $todoItem);
     const $todoItemText = find(".todo-item__text", $todoItem);
     const $todoItemDeleteButton = find(".todo-item__delete-btn", $todoItem);
-    let isMouseEnter = false;
+
+    let isEdit = false;
     $todoItem.addEventListener("mouseenter", function () {
+        if (isEdit) return;
         $todoItemDeleteButton.classList.remove("none");
-        isMouseEnter = true;
     });
     $todoItem.addEventListener("mouseleave", function () {
         $todoItemDeleteButton.classList.add("none");
-        isMouseEnter = false;
     });
 
     $todoItemToggle.addEventListener("click", function () {
@@ -104,18 +106,25 @@ function createTodoItem(todoItem) {
         renderTodos();
     });
     $todoItemText.addEventListener("dblclick", function () {
+        isEdit = true;
         $todoItemDeleteButton.classList.add("none");
         $todoItemText.contentEditable = true;
         $todoItemText.focus();
     });
     $todoItemText.addEventListener("focusout", function () {
+        const title = this.textContent.trim();
         $todoItemText.contentEditable = false;
-        isMouseEnter && $todoItemDeleteButton.classList.remove("none");
+        isEdit = false;
+        if (title.length) {
+            todoItem.title = title;
+        }
+        renderTodos();
     });
     $todoItemText.addEventListener("keydown", function (event) {
         const isUpdateTodoItem = [13, 9].includes(event.keyCode);
         if (isUpdateTodoItem) {
             todoItem.title = this.textContent;
+            isEdit = false;
             renderTodos();
         }
     });
