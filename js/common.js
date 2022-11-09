@@ -2,6 +2,7 @@ const $todoInput = find(".todo-head__input");
 const $todoList = find(".todo-body__list");
 const $todoCounter = find(".todo-control__count span");
 const $todoAllSelectedBtn = find(".todo-head__all-select-btn");
+const $todoControl = find(".todo-body__control");
 const $todoClearCompleteBtn = find(".todo-control__clear-complete-btn");
 const $todoControlBtns = findAll(".todo-control__btn");
 
@@ -138,6 +139,7 @@ function createTodoItem(todoItem) {
 
 function renderTodos() {
     let todos = todoState.todos;
+    const existTodos = todos.length;
     const existComplete = todoUtils.existComplete();
     const isAllSelected = !todoUtils.existActive() && todoState.todos.length;
 
@@ -157,6 +159,10 @@ function renderTodos() {
         const isSelectedStatus = todoControlBtnDatasetType === todoState.status;
         $todoControlBtn.classList.toggle("selected", isSelectedStatus);
     });
+
+    $todoAllSelectedBtn.classList.toggle("content-hide", !existTodos);
+    $todoControl.classList.toggle("none", !existTodos);
+
     $todoCounter.textContent = todos.length;
     $todoAllSelectedBtn.classList.toggle("all-selected", isAllSelected);
     $todoClearCompleteBtn.classList.toggle("none", !existComplete);

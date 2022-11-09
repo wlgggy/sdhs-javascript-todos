@@ -61,6 +61,9 @@ h1 {
 .todo-head__all-select-btn {
     padding: 10px 22px;
 }
+.todo-head__all-select-btn.content-hide::before {
+    content: "";
+}
 .todo-head__all-select-btn::before {
     content: "❯";
     display: inline-block;
